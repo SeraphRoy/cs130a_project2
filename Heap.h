@@ -19,7 +19,6 @@ public:
 
 class Heap{
 private:
-	//int HEAP_SIZE = 27;
 	int occupancy;
 	pair<char,int>* heap;
 	void CompleteBinaryTree(pair<char,int>* arrayOfCharFrequencyPair, int size);

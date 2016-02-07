@@ -1,12 +1,13 @@
 #include "Heap.h"
+#include "Huffman.h"
 #include <utility>
 using namespace std;
 
-typedef pair<char,int> PCI;
+//typedef pair<char,int> PCI;
 
 int main()
 {
-	PCI* arrayOfCharFrequencyPair = NULL;
+	/*PCI* arrayOfCharFrequencyPair = NULL;
 	arrayOfCharFrequencyPair = new PCI[5];
 	PCI a = make_pair('a',10);
 	PCI b = make_pair('b',5);
@@ -20,5 +21,15 @@ int main()
 	arrayOfCharFrequencyPair[4] = j;
 
 	Heap testHeapSize5 = Heap(arrayOfCharFrequencyPair, 5);
-	testHeapSize5.Print();
+	testHeapSize5.Print();*/
+	Huffman h;
+	pair<char,int>* freqArray = h.CountFreq("aaabbbcclcddekdlllll");
+    /*for (int i = 0; i < 27;i++)
+    {
+        cout << freqArray[i].first <<  ": " << freqArray[i].second << "\n";
+    }*/
+	Heap heap(freqArray);
+	heap.Print();
+	delete [] freqArray;
+	return 0;
 }

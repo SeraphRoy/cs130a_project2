@@ -4,18 +4,17 @@
 
 void Heap::CompleteBinaryTree(pair<char,int>* arrayOfCharFrequencyPair, int size)
 {	
-	this->occupancy = 0;
-	//int size = 27;
-    this->heap = new pair<char, int>[size];
-	for (int i = 0; i < size;i++)
-	{
-		if (arrayOfCharFrequencyPair[i].second != 0)
-		{
-			heap[i] = arrayOfCharFrequencyPair[i];
-			this->occupancy++;
-			//cout << heap[i].first << " " << heap[i].second << endl;
-		}
-	}
+    this->heap = new pair<char, int> [size];
+    for (int i = 0; i < size;i++)
+    {
+        if (arrayOfCharFrequencyPair[i].second > 0)
+        {
+            
+            this->heap[occupancy] = arrayOfCharFrequencyPair[i];
+            this->occupancy++;
+        }
+    }
+    this->Print();
 }
 
 void Heap::MaxHeapify(pair<char,int>* minHeap,int startIndex)
@@ -32,7 +31,8 @@ void Heap::MaxHeapify(pair<char,int>* minHeap,int startIndex)
 	if (smallest != startIndex)
     {
         pair<char, int> temp = minHeap[startIndex];
-        minHeap[startIndex] = minHeap[smallest];
+        minHeap[startIndex].first = minHeap[smallest].first;
+        minHeap[startIndex].second = minHeap[smallest].second;
         minHeap[smallest] = temp;
         //this->Print();
 		this->MaxHeapify(minHeap, smallest);
@@ -41,10 +41,10 @@ void Heap::MaxHeapify(pair<char,int>* minHeap,int startIndex)
 
 Heap::Heap(pair<char,int>* arrayOfCharFrequencyPair, int size)
 {
-	//int size = 27;
+    this->occupancy = 0;
 	this->CompleteBinaryTree(arrayOfCharFrequencyPair, size);
     //this->Print();
-    for (int i = size/2; i>=0; i--)
+    for (int i = occupancy/2; i>=0; i--)
     {
         this->MaxHeapify(this->heap, i);
     }
