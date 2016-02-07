@@ -22,14 +22,17 @@ int main()
 
 	Heap testHeapSize5 = Heap(arrayOfCharFrequencyPair, 5);
 	testHeapSize5.Print();*/
-	Huffman h;
-	pair<char,int>* freqArray = h.CountFreq("aaabbbcclcddekdlllll");
-    /*for (int i = 0; i < 27;i++)
+  Huffman h("aabbb");
+  pair<char,int>* freqArray = h.CountFreq("aabbbcccddddeeeee");
+  /*for (int i = 0; i < 27;i++)
     {
-        cout << freqArray[i].first <<  ": " << freqArray[i].second << "\n";
+    cout << freqArray[i].first <<  ": " << freqArray[i].second << "\n";
     }*/
-	Heap heap(freqArray);
-	heap.Print();
-	delete [] freqArray;
-	return 0;
+  //h.print();
+  Heap heap(freqArray);
+  heap.Print();
+  heap.insert(make_pair('i', 1));
+  heap.Print();
+  delete [] freqArray;
+  return 0;
 }

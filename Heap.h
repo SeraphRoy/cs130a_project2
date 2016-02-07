@@ -29,6 +29,7 @@ public:
 	int GetHeapSize(){ return this->occupancy; };
 	pair<char,int> DeleteMin();
 	void Print();
+    void insert(pair<char, int> input);
 };
 
 #endif

@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -Werror
 BINARIES = TestHeap
 all = ${BINARIES}
 
-TestHeap: Heap.o TestHeap.o Huffman.o
+Test: Heap.o Test.o Huffman.o
 	${CXX} $^ -o $@
 
 #all: Main.o Heap.o Huffman.o

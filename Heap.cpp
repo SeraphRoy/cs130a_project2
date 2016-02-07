@@ -76,3 +76,17 @@ void Heap::Print()
     result << "\n\n";
 	cout << result.str();
 }
+
+void Heap::insert(pair<char, int> input){
+  pair<char, int> *insert = new pair<char, int>(input);
+  heap[occupancy] = *insert;
+  int index = occupancy;
+  occupancy ++;
+  while(index != 0 && heap[index] >= heap[index/2]){
+    pair<char, int>* temp = new pair<char, int>(heap[index]);
+    heap[index] = heap[(index-1)/2];
+    heap[(index-1)/2] = *temp;
+    delete temp;
+    index /= 2;
+  }
+}

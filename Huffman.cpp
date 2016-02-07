@@ -21,37 +21,13 @@ pair<char, int>* Huffman::CountFreq(string input){
     }
     return map;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Huffman::Huffman(string input){
+  encodeTree = new Heap(CountFreq(input));
+}
 
 /*
-int main(){
-  pair<char, int>* haha = CountFreq("aaabbbcccddd ooiidd   ");
-  for(int i = 0; i < 27; i++){
-	cout << haha[i].first << " " << haha[i].second  << endl;
-  }
-  return 0;
+void Huffman::print(){
+  this->encodeTree->Print();
 }
 */
 

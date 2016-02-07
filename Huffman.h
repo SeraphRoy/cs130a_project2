@@ -7,14 +7,15 @@ using namespace std;
 
 class Huffman{
 private:
-	//Heap encodeTree;
+	Heap *encodeTree;
 	
 public:
-	Huffman(){};
+	Huffman(string input);
 	//~Huffman();
     string Encode(){return "";};
     string Decode(){return "";};
-	pair<char, int>* CountFreq(string input);
+    //void print();
+    pair<char, int>* CountFreq(string input);
 
 };
 #endif
