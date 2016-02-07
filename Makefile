@@ -1,20 +1,27 @@
-#CXX = g++
-CXX = clang++
+CXX = g++
+#CXX = clang++
+#CXXFLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-private-field
 
-BINARIES = Heap Huffman
+CXXFLAGS = -std=c++11 -Wall -Wextra -Werror
 
+#BINARIES = Heap Huffman
+BINARIES = TestHeap
+all = ${BINARIES}
 
-all: Main.o Heap.o Huffman.o
-	${CXX} -g Heap.o Huffman.o Main.o -o prog1
+TestHeap: Heap.o TestHeap.o
+	${CXX} $^ -o $@
 
-Main.o: Main.cpp
-	${CXX} -c Main.cpp
+#all: Main.o Heap.o Huffman.o
+#	${CXX} -g Heap.o Huffman.o Main.o -o prog1
 
-Heap.o: Hep.cpp
-	${CXX} -c Heap.cpp
+#Main.o: Main.cpp
+#	${CXX} -c Main.cpp
 
-Huffman.o: Huffman.cpp
-	${CXX} -c Huffman.cpp
+#Heap.o: Hep.cpp
+#	${CXX} -c Heap.cpp
+
+#Huffman.o: Huffman.cpp
+#	${CXX} -c Huffman.cpp
 
 clean:
 	/bin/rm -f *o *~ \#* ${BINARIES}
