@@ -21,8 +21,14 @@ pair<char, int>* Huffman::CountFreq(string input){
     }
     return map;
 }
+
+//NOT DONE YET
 Huffman::Huffman(string input){
-  encodeTree = new Heap(CountFreq(input));
+  Heap* encodeTree = new Heap(CountFreq(input));
+  while(encodeTree->GetHeapSize() != 1){
+    pair<char, int> min1 = encodeTree->DeleteMin();
+    pair<char, int> min2 = encodeTree->DeleteMin();
+  }
 }
 
 /*

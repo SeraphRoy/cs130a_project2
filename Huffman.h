@@ -5,10 +5,10 @@
 #include "Heap.h"
 using namespace std;
 
+
 class Huffman{
 private:
-	Heap *encodeTree;
-	
+  Node *root;
 public:
 	Huffman(string input);
 	//~Huffman();
