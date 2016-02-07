@@ -37,3 +37,52 @@ void Huffman::print(){
 }
 */
 
+pair<char, string>* Huffman::EncodeMap(){
+  pair<char, string>* map = new pair<char, string>[27];
+  for(int i = 0; i < 26; i++)
+    map[i] = pair<char, string>(static_cast<char>(i+97), "");
+  map[26] = pair<char, string>(' ', "");
+  HelpEncodeMap(root, "", map);
+  return map;
+}
+
+void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
+  if(begin->GetOne() != NULL){
+    if(begin->GetOne()->GetWordfreq() != NULL){
+      code += "1";
+      char index = begin->GetOne()->GetWordfreq()->first;
+      if(index != ' '){
+        map[static_cast<int>(index)].second = code;
+      }
+      else{
+        map[26].second = code;
+      }
+      return;
+    }
+    else{
+      code += "1";
+      HelpEncodeMap(begin->GetOne(), code, map);
+    }
+  }
+  else
+    return;
+  if(begin->GetZero() != NULL){
+    if(begin->GetZero()->GetWordfreq() != NULL){
+      code += "0";
+      char index = begin->GetZero()->GetWordfreq()->first;
+      if(index != ' '){
+        map[static_cast<int>(index)].second = code;
+      }
+      else{
+        map[26].second = code;
+      }
+      return;
+    }
+    else{
+      code += "0";
+      HelpEncodeMap(begin->GetZero(), code, map);
+    }
+  }
+  else
+    return;
+}
