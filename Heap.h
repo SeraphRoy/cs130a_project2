@@ -43,5 +43,3 @@ public:
 	void Insert(Node* input);
     Node* GetHeap(){ return this->heap; };
 };
-
-#endif
