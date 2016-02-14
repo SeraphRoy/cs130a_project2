@@ -7,14 +7,12 @@ using namespace std;
 
 class Huffman{
 private:
-  Node *root;
+  Heap* encodeTree;
   void HelpEncodeMap(Node* begin, string code, pair<char, string>* map);
 public:
 	Huffman(string input);
     Huffman(){};
 	//~Huffman();
-    string Encode(){return "";};
-    string Decode(){return "";};
     void Print(Node root);
     void Print(){ this->encodeTree->Print(); };
     pair<char, int>* CountFreq(string input);
