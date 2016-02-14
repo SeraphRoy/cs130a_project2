@@ -53,15 +53,15 @@ pair<char, string>* Huffman::EncodeMap(){
   for(int i = 0; i < 26; i++)
     map[i] = pair<char, string>(static_cast<char>(i+97), "");
   map[26] = pair<char, string>(' ', "");
-  HelpEncodeMap(encodeTree, "", map);
+  HelpEncodeMap(encodeTree->GetHeap(), "", map);
   return map;
 }
 
 void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
   if(begin->GetLeftOne() != NULL){
-    if(begin->GetLeftOne()->GetWordfreq() != NULL){
+    if(begin->GetLeftOne() != NULL){
       code += "1";
-      char index = begin->GetLeftOne()->GetWordfreq()->first;
+      char index = begin->GetLeftOne()->GetChar();
       if(index != ' '){
         map[static_cast<int>(index)].second = code;
       }
@@ -78,9 +78,9 @@ void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
   else
     return;
   if(begin->GetRightZero() != NULL){
-    if(begin->GetRightZero()->GetWordfreq() != NULL){
+    if(begin->GetRightZero() != NULL){
       code += "0";
-      char index = begin->GetRightZero()->GetWordfreq()->first;
+      char index = begin->GetRightZero()->GetChar();
       if(index != ' '){
         map[static_cast<int>(index)].second = code;
       }
