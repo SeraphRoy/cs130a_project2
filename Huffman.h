@@ -7,8 +7,8 @@ using namespace std;
 
 class Huffman{
 private:
-  	Heap* encodeTree;
-    string Decode(string cipher, Node* root);
+  Node *root;
+  void HelpEncodeMap(Node* begin, string code, pair<char, string>* map);
 public:
 	Huffman(string input);
     Huffman(){};
@@ -18,6 +18,6 @@ public:
     void Print(Node root);
     void Print(){ this->encodeTree->Print(); };
     pair<char, int>* CountFreq(string input);
-    string Decode(string cipher){ return Decode(cipher,this->encodeTree->GetHeap()); };
+    pair<char, string>* EncodeMap();
 };
 #endif
