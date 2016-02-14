@@ -5,17 +5,19 @@
 #include "Heap.h"
 using namespace std;
 
-
 class Huffman{
 private:
-  Node *root;
+  	Heap* encodeTree;
+    string Decode(string cipher, Node* root);
 public:
 	Huffman(string input);
+    Huffman(){};
 	//~Huffman();
     string Encode(){return "";};
     string Decode(){return "";};
-    //void print();
+    void Print(Node root);
+    void Print(){ this->encodeTree->Print(); };
     pair<char, int>* CountFreq(string input);
-
+    string Decode(string cipher){ return Decode(cipher,this->encodeTree->GetHeap()); };
 };
 #endif
