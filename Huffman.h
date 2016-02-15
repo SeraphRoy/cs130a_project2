@@ -11,7 +11,7 @@ private:
   void HelpEncodeMap(Node* begin, string code, pair<char, string>* map);
 public:
 	Huffman(string input);
-    Huffman(){};
+    //Huffman(){encodeTree = NULL;};
 	//~Huffman();
     void Print(Node root);
     void Print(){ this->encodeTree->Print(); };

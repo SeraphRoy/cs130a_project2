@@ -22,7 +22,9 @@ int main()
 
     Heap testHeapSize5 = Heap(arrayOfCharFrequencyPair, 5);
     testHeapSize5.Print();*/
-    Huffman h("aabbbcccddddeeeee");
+    //Huffman h("aabbbcccddddeeeee");
+    Huffman a("dcadddddfffc");
+    a.Print();
     //pair<char,int>* freqArray = h.CountFreq("aabbbcccddddeeeee");
     //Heap test = Heap(h.CountFreq("aabbbcccddddeeeee"));
     //test.Print();

@@ -15,14 +15,14 @@ public:
 	Node();
 	Node(Node* leftOne, Node* rightZero); // cautious
 	Node(pair<char,int> input);
-	Node(const Node &input);
+	Node(const Node &orig);
 	pair<char,int> GetCharFreqPair(){ return this->charFreqPair; };
 	char GetChar(){ return this->charFreqPair.first; };
 	int GetFreq(){ return this->charFreqPair.second; };
-    void SetCharFreqPair(pair<char,int> charFreqPair){ this->charFreqPair = charFreqPair; };
-	Node& operator=(const Node &input);
-    Node* GetLeftOne(){ return this->leftOne; };
-    Node* GetRightZero(){ return this->rightZero; };
+    void SetCharFreqPair(pair<char,int> charFreqPair);
+	//Node*& operator=(const Node* &input);
+    Node* GetLeftOne() const { return this->leftOne; };
+    Node* GetRightZero() const { return this->rightZero; };
     string ToString();
 };
 
@@ -30,17 +30,17 @@ public:
 class Heap{
 private:
 	int occupancy;
-	Node* heap;
+	Node** heap;
 	void CompleteBinaryTree(pair<char,int>* arrayOfCharFrequencyPair, int size);
-	void MaxHeapify(Node* minHeap, int startIndex = 0);
+	void MaxHeapify(Node** minHeap, int startIndex = 0);
 public:
 	Heap(pair<char,int>* arrayOfCharFrequencyPair, int size = 27);
 	~Heap();
-	int GetFreqOfIndex(int index){ return this->heap[index].GetFreq(); };
+	int GetFreqOfIndex(int index){ return this->heap[index]->GetFreq(); };
 	int GetHeapSize(){ return this->occupancy; };
-	Node DeleteMin();
+	Node* DeleteMin();
 	void Print();
 	void Insert(Node* input);
-    Node* GetHeap(){ return this->heap; };
+    Node** GetHeap(){ return this->heap; };
 };
 #endif
