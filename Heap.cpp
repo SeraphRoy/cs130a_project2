@@ -110,12 +110,12 @@ Heap::Heap(pair<char,int>* arrayOfCharFrequencyPair, int size)
         this->heap[i] = new Node();
     }
 	this->CompleteBinaryTree(arrayOfCharFrequencyPair, size);
-	//this->Print();
+	this->Print();
 	for (int i = occupancy/2; i>=0; i--)
 	{
 		this->MaxHeapify(this->heap, i);
 	}
-	//this->Print();
+	this->Print();
 }
 
 Heap::~Heap()
