@@ -1,6 +1,7 @@
 #include "Heap.h"
 #include "Huffman.h"
 #include <utility>
+#include <fstream>
 using namespace std;
 
 //typedef pair<char,int> PCI;
@@ -23,8 +24,19 @@ int main()
     Heap testHeapSize5 = Heap(arrayOfCharFrequencyPair, 5);
     testHeapSize5.Print();*/
     //Huffman h("aabbbcccddddeeeee");
-    Huffman a("dcadddddfffc");
-    a.Print();
+
+  ifstream plain("plain.input");
+  ifstream encoded("encoded.input");
+  string plainInput;
+  string encodedInput;
+  if(!plain.eof())
+    getline(plain, plainInput);
+  if(!encoded.eof())
+    getline(encoded, encodedInput);
+  
+  Huffman a(plainInput);
+  a.Print();
+  a.PrintEncode();
     //pair<char,int>* freqArray = h.CountFreq("aabbbcccddddeeeee");
     //Heap test = Heap(h.CountFreq("aabbbcccddddeeeee"));
     //test.Print();

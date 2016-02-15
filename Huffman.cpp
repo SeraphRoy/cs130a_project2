@@ -20,6 +20,8 @@ pair<char, int>* Huffman::CountFreq(string input){
         else
             map[static_cast<int>(input[i])-97].second ++;
     }
+    for(int i = 0; i < 27; i++)
+      cout << map[i].first << " " << map[i].second << endl;
     return map;
 }
 
@@ -35,8 +37,8 @@ Huffman::Huffman(string input){
         //min1.ToString();
         //cout << "min right: ";
         //min2.ToString();
-        Node* leftOne = new Node(*encodeTree->DeleteMin());
         Node* rightZero = new Node(*encodeTree->DeleteMin());
+        Node* leftOne = new Node(*encodeTree->DeleteMin());
         Node* weight = new Node(leftOne,rightZero);
         encodeTree->Insert(weight);
         //encodeTree->Print();
@@ -49,16 +51,36 @@ Huffman::Huffman(string input){
  this->encodeTree->Print();
  }
  */
-/*
+
+
 pair<char, string>* Huffman::EncodeMap(){
     pair<char, string>* map = new pair<char, string>[27];
     for(int i = 0; i < 26; i++)
         map[i] = pair<char, string>(static_cast<char>(i+97), "");
     map[26] = pair<char, string>(' ', "");
-    HelpEncodeMap(encodeTree->GetHeap(), "", map);
+    HelpEncodeMap(*encodeTree->GetHeap(), "", map);
     return map;
 }
 
+void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
+  if (begin == NULL){
+    return;
+  }
+  if (begin->GetChar() != '*'){
+      if (begin->GetChar() != ' '){
+          map[static_cast<int>(begin->GetChar()-97)].second = code;
+      }
+      else{
+          map[26].second = code;
+      }
+    return;
+  }
+  if (begin->GetLeftOne() != NULL)
+    HelpEncodeMap(begin->GetLeftOne(), code + "1", map);
+  if (begin->GetRightZero() != NULL)
+    HelpEncodeMap(begin->GetRightZero(), code + "0", map);
+}
+/*
 void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
     if(begin->GetLeftOne() != NULL){
         if(begin->GetLeftOne() != NULL){
@@ -100,3 +122,9 @@ void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
         return;
 }
 */
+void Huffman::PrintEncode(){
+  pair<char, string>* map = EncodeMap();
+  for(int i = 0; i < 27; i++){
+    cout << map[i].first << " " << map[i].second << endl;
+  }
+}
