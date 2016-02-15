@@ -35,7 +35,7 @@ int main()
     getline(encoded, encodedInput);
   
   Huffman a(plainInput);
-  a.Print();
+  //a.Print();
   a.PrintEncode();
     //pair<char,int>* freqArray = h.CountFreq("aabbbcccddddeeeee");
     //Heap test = Heap(h.CountFreq("aabbbcccddddeeeee"));

@@ -20,8 +20,8 @@ pair<char, int>* Huffman::CountFreq(string input){
         else
             map[static_cast<int>(input[i])-97].second ++;
     }
-    for(int i = 0; i < 27; i++)
-      cout << map[i].first << " " << map[i].second << endl;
+    //for(int i = 0; i < 27; i++)
+    //  cout << map[i].first << " " << map[i].second << endl;
     return map;
 }
 
@@ -125,7 +125,8 @@ void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
 void Huffman::PrintEncode(){
   pair<char, string>* map = EncodeMap();
   for(int i = 0; i < 27; i++){
-    cout << map[i].second;
+    cout << map[i].first << ":";
+    cout << map[i].second << "\n";
   }
   cout << "\n";
 }

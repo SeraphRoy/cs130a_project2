@@ -31,16 +31,6 @@ Node::Node(const Node& orig)
 {
    
 	this->charFreqPair = orig.charFreqPair;
-    /*
-    if (this->leftOne!=NULL)
-    {
-        this->leftOne = new Node(*orig.GetLeftOne());
-    }
-    if (this->rightZero!=NULL)
-    {
-        this->rightZero = new Node(*orig.GetRightZero());
-    }*/
- 
     this->leftOne = orig.leftOne;
     this->rightZero = orig.rightZero;
 }
@@ -68,53 +58,62 @@ string Node::ToString()
 void Heap::CompleteBinaryTree(pair<char,int>* arrayOfCharFrequencyPair, int size)
 {	
 	
-	for (int i = 0; i < size;i++)
+	for (int i = 1; i <= size;i++)
 	{
-		if (arrayOfCharFrequencyPair[i].second > 0)
+		if (arrayOfCharFrequencyPair[i-1].second > 0)
 		{
             //this-heap[occupancy] = Node(arrayOfCharFrequencyPair[i]);
-			this->heap[occupancy]->SetCharFreqPair(arrayOfCharFrequencyPair[i]);
-			this->occupancy++;
+            this->occupancy++;
+			this->heap[occupancy]->SetCharFreqPair(arrayOfCharFrequencyPair[i-1]);
 		}
 	}
+	//cout << "CompleteBinaryTree\n";
 	//this->Print();
 }
 
-void Heap::MaxHeapify(Node** minHeap,int startIndex)
+void Heap::MinHeapify(Node** minHeap,int startIndex)
 {
-	if (startIndex >= occupancy)
+	//cout << "occupancy: "<< occupancy << endl;
+	if (startIndex > occupancy)
 		return;
 	int left =  startIndex * 2;
 	int right = left + 1;
 	int smallest = startIndex;
-	if (left < occupancy && heap[left]->GetFreq() < heap[startIndex]->GetFreq())
+	if (left <= occupancy && heap[left]->GetFreq() < heap[startIndex]->GetFreq())
 		smallest = left;
-	if (right < occupancy && heap[right]->GetFreq() < heap[startIndex]->GetFreq())
+	if (right <= occupancy && heap[right]->GetFreq() < heap[startIndex]->GetFreq())
 		smallest = right;
 	if (smallest != startIndex)
 	{
+		//cout << "Before swap: \n";
+		//this->Print();
+		//cout << "swap " << heap[startIndex]->GetChar() << " at index "<< startIndex << " with " << heap[smallest]->GetChar() << " at index "<< smallest<< endl;
+		
 		Node* temp = minHeap[startIndex];
 		minHeap[startIndex] = minHeap[smallest];
 		minHeap[smallest] = temp;
+
 		//this->Print();
-		this->MaxHeapify(minHeap, smallest);
+		this->MinHeapify(minHeap, smallest);
 	}
 }
 
 Heap::Heap(pair<char,int>* arrayOfCharFrequencyPair, int size)
 {
 	this->occupancy = 0;
-    this->heap = new Node* [size];
-    for (int i = 0; i <size; i++)
+    this->heap = new Node* [size+1];
+    for (int i = 0; i <=size; i++)
     {
         this->heap[i] = new Node();
     }
 	this->CompleteBinaryTree(arrayOfCharFrequencyPair, size);
+	cout << "CompleteBinaryTree\n";
 	this->Print();
-	for (int i = occupancy/2; i>=0; i--)
+	for (int i = occupancy/2; i>=1; i--)
 	{
-		this->MaxHeapify(this->heap, i);
+		this->MinHeapify(this->heap, i);
 	}
+	cout << "Inital heap: \n";
 	this->Print();
 }
 
@@ -125,10 +124,10 @@ Heap::~Heap()
 
 Node* Heap::DeleteMin()
 {
-	Node* minFreqChar = heap[0];
-	this->heap[0] = this->heap[occupancy-1];
+	Node* minFreqChar = heap[1];
+	this->heap[1] = this->heap[occupancy];
 	this->occupancy--;
-    this->MaxHeapify(this->heap,0);
+    this->MinHeapify(this->heap,1);
 	return minFreqChar;
 }
 /*
@@ -150,7 +149,7 @@ void Heap::Print()
 void Heap::Print()
 {
     ostringstream output;
-    for (int i = 0; i < occupancy; i++)
+    for (int i = 1; i <= occupancy; i++)
     {
         output << heap[i]->ToString();
     }
@@ -164,11 +163,12 @@ void Heap::Insert(Node* input){
 		cout << "Error: Not enough space for inserting!\n";	
 		return;
 	}
+	occupancy ++;
   	this->heap[occupancy] = input;
   	//int index = occupancy;
-  	occupancy ++;
-  	for (int i = occupancy/2; i>=0; i--)
+  	
+  	for (int i = occupancy/2; i>=1; i--)
 	{
-		this->MaxHeapify(this->heap, i);
+		this->MinHeapify(this->heap, i);
 	}
 }

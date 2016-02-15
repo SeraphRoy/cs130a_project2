@@ -32,7 +32,7 @@ private:
 	int occupancy;
 	Node** heap;
 	void CompleteBinaryTree(pair<char,int>* arrayOfCharFrequencyPair, int size);
-	void MaxHeapify(Node** minHeap, int startIndex = 0);
+	void MinHeapify(Node** minHeap, int startIndex = 0);
 public:
 	Heap(pair<char,int>* arrayOfCharFrequencyPair, int size = 27);
 	~Heap();
