@@ -29,8 +29,8 @@ Huffman::Huffman(string input){
     encodeTree = new Heap(CountFreq(input));
     while (encodeTree->GetHeapSize()>1)
     {
-        //cout << encodeTree->GetHeapSize() << "\n";
-        //encodeTree->Print();
+      cout << encodeTree->GetHeapSize() << "\n";
+      encodeTree->Print();
         //Node min1 = encodeTree->DeleteMin();
         //Node min2 = encodeTree->DeleteMin();
         //cout << "min left: ";
@@ -58,7 +58,7 @@ pair<char, string>* Huffman::EncodeMap(){
     for(int i = 0; i < 26; i++)
         map[i] = pair<char, string>(static_cast<char>(i+97), "");
     map[26] = pair<char, string>(' ', "");
-    HelpEncodeMap(*encodeTree->GetHeap(), "", map);
+    HelpEncodeMap(*(encodeTree->GetHeap()+1), "", map);
     return map;
 }
 
