@@ -79,10 +79,10 @@ void Heap::MinHeapify(Node** minHeap,int startIndex)
 	int left =  startIndex * 2;
 	int right = left + 1;
 	int smallest = startIndex;
-	if (left <= occupancy && heap[left]->GetFreq() < heap[startIndex]->GetFreq())
-		smallest = left;
-	if (right <= occupancy && heap[right]->GetFreq() < heap[startIndex]->GetFreq())
+	if (right <= occupancy && heap[right]->GetFreq() < heap[smallest]->GetFreq())
 		smallest = right;
+	if (left <= occupancy && heap[left]->GetFreq() < heap[smallest]->GetFreq())
+		smallest = left;
 	if (smallest != startIndex)
 	{
 		//cout << "Before swap: \n";
@@ -96,6 +96,8 @@ void Heap::MinHeapify(Node** minHeap,int startIndex)
 		//this->Print();
 		this->MinHeapify(minHeap, smallest);
 	}
+	//cout << "After MinHeapify: \n";
+	//this->Print();
 }
 
 Heap::Heap(pair<char,int>* arrayOfCharFrequencyPair, int size)
@@ -128,6 +130,7 @@ Node* Heap::DeleteMin()
 	this->heap[1] = this->heap[occupancy];
 	this->occupancy--;
     this->MinHeapify(this->heap,1);
+    cout << "Delete: " << minFreqChar->GetChar() << " " << minFreqChar->GetFreq() << endl; 
 	return minFreqChar;
 }
 /*

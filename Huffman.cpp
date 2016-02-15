@@ -30,7 +30,7 @@ Huffman::Huffman(string input){
     while (encodeTree->GetHeapSize()>1)
     {
       cout << encodeTree->GetHeapSize() << "\n";
-      encodeTree->Print();
+      
         //Node min1 = encodeTree->DeleteMin();
         //Node min2 = encodeTree->DeleteMin();
         //cout << "min left: ";
@@ -38,10 +38,13 @@ Huffman::Huffman(string input){
         //cout << "min right: ";
         //min2.ToString();
         Node* rightZero = new Node(*encodeTree->DeleteMin());
+        cout << "after first delete: \n";
+        encodeTree->Print();
         Node* leftOne = new Node(*encodeTree->DeleteMin());
+        
         Node* weight = new Node(leftOne,rightZero);
         encodeTree->Insert(weight);
-        //encodeTree->Print();
+        encodeTree->Print();
     }
     //this->encodeTree->Print();
 }
