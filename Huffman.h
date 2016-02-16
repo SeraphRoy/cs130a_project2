@@ -15,7 +15,7 @@ public:
 	//~Huffman();
     void Print(Node root);
     void Print(){ this->encodeTree->Print(); };
-    void PrintEncode();
+    void PrintEncode(string plain, string encoded);
     pair<char, int>* CountFreq(string input);
     pair<char, string>* EncodeMap();
 };

@@ -109,14 +109,14 @@ Heap::Heap(pair<char,int>* arrayOfCharFrequencyPair, int size)
         this->heap[i] = new Node();
     }
 	this->CompleteBinaryTree(arrayOfCharFrequencyPair, size);
-	cout << "CompleteBinaryTree\n";
-	this->Print();
+	//cout << "CompleteBinaryTree\n";
+	//this->Print();
 	for (int i = occupancy/2; i>=1; i--)
 	{
 		this->MinHeapify(this->heap, i);
 	}
-	cout << "Inital heap: \n";
-	this->Print();
+	//cout << "Inital heap: \n";
+	//this->Print();
 }
 
 Heap::~Heap()
@@ -130,7 +130,7 @@ Node* Heap::DeleteMin()
 	this->heap[1] = this->heap[occupancy];
 	this->occupancy--;
     this->MinHeapify(this->heap,1);
-    cout << "Delete: " << minFreqChar->GetChar() << " " << minFreqChar->GetFreq() << endl; 
+    //cout << "Delete: " << minFreqChar->GetChar() << " " << minFreqChar->GetFreq() << endl; 
 	return minFreqChar;
 }
 /*

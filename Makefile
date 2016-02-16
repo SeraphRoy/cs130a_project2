@@ -10,6 +10,8 @@ all = ${BINARIES}
 
 test: Heap.o Test.o Huffman.o
 	${CXX} $^ -o $@
+#	./test > myout.txt
+#	diff expected_output.txt myout.txt
 
 #all: Main.o Heap.o Huffman.o
 #	${CXX} -g Heap.o Huffman.o Main.o -o prog1

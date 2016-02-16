@@ -29,7 +29,7 @@ Huffman::Huffman(string input){
     encodeTree = new Heap(CountFreq(input));
     while (encodeTree->GetHeapSize()>1)
     {
-      cout << encodeTree->GetHeapSize() << "\n";
+      //cout << encodeTree->GetHeapSize() << "\n";
       
         //Node min1 = encodeTree->DeleteMin();
         //Node min2 = encodeTree->DeleteMin();
@@ -38,13 +38,13 @@ Huffman::Huffman(string input){
         //cout << "min right: ";
         //min2.ToString();
         Node* rightZero = new Node(*encodeTree->DeleteMin());
-        cout << "after first delete: \n";
-        encodeTree->Print();
+        //cout << "after first delete: \n";
+        //encodeTree->Print();
         Node* leftOne = new Node(*encodeTree->DeleteMin());
         
         Node* weight = new Node(leftOne,rightZero);
         encodeTree->Insert(weight);
-        encodeTree->Print();
+        //encodeTree->Print();
     }
     //this->encodeTree->Print();
 }
@@ -83,53 +83,29 @@ void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
   if (begin->GetRightZero() != NULL)
     HelpEncodeMap(begin->GetRightZero(), code + "0", map);
 }
-/*
-void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
-    if(begin->GetLeftOne() != NULL){
-        if(begin->GetLeftOne() != NULL){
-            code += "1";
-            char index = begin->GetLeftOne()->GetChar();
-            if(index != ' '){
-                map[static_cast<int>(index)].second = code;
-            }
-            else{
-                map[26].second = code;
-            }
-            return;
-        }
-        else{
-            code += "1";
-            HelpEncodeMap(begin->GetLeftOne(), code, map);
-        }
-    }
-    else
-        return;
-    if(begin->GetRightZero() != NULL){
-        if(begin->GetRightZero() != NULL){
-            code += "0";
-            char index = begin->GetRightZero()->GetChar();
-            if(index != ' '){
-                map[static_cast<int>(index)].second = code;
-            }
-            else{
-                map[26].second = code;
-            }
-            return;
-        }
-        else{
-            code += "0";
-            HelpEncodeMap(begin->GetRightZero(), code, map);
-        }
-    }
-    else
-        return;
-}
-*/
-void Huffman::PrintEncode(){
+
+void Huffman::PrintEncode(string plain, string encoded){
   pair<char, string>* map = EncodeMap();
-  for(int i = 0; i < 27; i++){
-    cout << map[i].first << ":";
-    cout << map[i].second << "\n";
+  //for(int i = 0; i < 27; i++)
+  //  cout << map[i].second;
+  //cout << "\n";
+  for(int i = 0; i < plain.length(); i++){
+    if(plain[i] != ' ')
+      cout << map[static_cast<int>(plain[i]-97)].second;
+    else
+      cout << map[26].second;
   }
   cout << "\n";
+
+  string temp = "";
+  for(int i = 0; i < encoded.length(); i++){
+    temp += encoded[i];
+    for(int j = 0; j < 27; j++){
+      if (temp.length() != 0 && temp.compare(map[j].second) == 0){
+        //cout << "haha";
+        cout << map[j].first;
+        temp = "";
+      }
+    }
+  }
 }
