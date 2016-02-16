@@ -89,7 +89,7 @@ void Huffman::PrintEncode(string plain, string encoded){
   //for(int i = 0; i < 27; i++)
   //  cout << map[i].second;
   //cout << "\n";
-  for(int i = 0; i < plain.length(); i++){
+  for(size_t i = 0; i < plain.length(); i++){
     if(plain[i] != ' ')
       cout << map[static_cast<int>(plain[i]-97)].second;
     else
@@ -98,7 +98,7 @@ void Huffman::PrintEncode(string plain, string encoded){
   cout << "\n";
 
   string temp = "";
-  for(int i = 0; i < encoded.length(); i++){
+  for(size_t i = 0; i < encoded.length(); i++){
     temp += encoded[i];
     for(int j = 0; j < 27; j++){
       if (temp.length() != 0 && temp.compare(map[j].second) == 0){
