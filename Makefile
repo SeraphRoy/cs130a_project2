@@ -6,7 +6,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-private-fi
 
 #BINARIES = Heap Huffman
 BINARIES = test
-all = ${BINARIES}
+all:${BINARIES}
 
 test: Heap.o Test.o Huffman.o
 	${CXX} $^ -o $@
@@ -26,4 +26,4 @@ test: Heap.o Test.o Huffman.o
 #	${CXX} -c Huffman.cpp
 
 clean:
-	/bin/rm -f ${BINARIES}
+	/bin/rm -f ${BINARIES} *.o
