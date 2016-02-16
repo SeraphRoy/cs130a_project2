@@ -20,8 +20,6 @@ pair<char, int>* Huffman::CountFreq(string input){
         else
             map[static_cast<int>(input[i])-97].second ++;
     }
-    //for(int i = 0; i < 27; i++)
-    //  cout << map[i].first << " " << map[i].second << endl;
     return map;
 }
 
@@ -29,32 +27,12 @@ Huffman::Huffman(string input){
     encodeTree = new Heap(CountFreq(input));
     while (encodeTree->GetHeapSize()>1)
     {
-      //cout << encodeTree->GetHeapSize() << "\n";
-      
-        //Node min1 = encodeTree->DeleteMin();
-        //Node min2 = encodeTree->DeleteMin();
-        //cout << "min left: ";
-        //min1.ToString();
-        //cout << "min right: ";
-        //min2.ToString();
-        Node* rightZero = new Node(*encodeTree->DeleteMin());
-        //cout << "after first delete: \n";
-        //encodeTree->Print();
+        Node* rightZero = new Node(*encodeTree->DeleteMin());     
         Node* leftOne = new Node(*encodeTree->DeleteMin());
-        
         Node* weight = new Node(leftOne,rightZero);
         encodeTree->Insert(weight);
-        //encodeTree->Print();
     }
-    //this->encodeTree->Print();
 }
-
-/*
- void Huffman::print(){
- this->encodeTree->Print();
- }
- */
-
 
 pair<char, string>* Huffman::EncodeMap(){
     pair<char, string>* map = new pair<char, string>[27];
@@ -86,9 +64,6 @@ void Huffman::HelpEncodeMap(Node* begin, string code, pair<char, string>* map){
 
 void Huffman::PrintEncode(string plain, string encoded){
   pair<char, string>* map = EncodeMap();
-  //for(int i = 0; i < 27; i++)
-  //  cout << map[i].second;
-  //cout << "\n";
   for(size_t i = 0; i < plain.length(); i++){
     if(plain[i] != ' ')
       cout << map[static_cast<int>(plain[i]-97)].second;
@@ -102,7 +77,6 @@ void Huffman::PrintEncode(string plain, string encoded){
     temp += encoded[i];
     for(int j = 0; j < 27; j++){
       if (temp.length() != 0 && temp.compare(map[j].second) == 0){
-        //cout << "haha";
         cout << map[j].first;
         temp = "";
       }

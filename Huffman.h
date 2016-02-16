@@ -10,10 +10,7 @@ private:
   Heap* encodeTree;
   void HelpEncodeMap(Node* begin, string code, pair<char, string>* map);
 public:
-	Huffman(string input);
-    //Huffman(){encodeTree = NULL;};
-	//~Huffman();
-    void Print(Node root);
+    Huffman(string input);
     void Print(){ this->encodeTree->Print(); };
     void PrintEncode(string plain, string encoded);
     pair<char, int>* CountFreq(string input);
